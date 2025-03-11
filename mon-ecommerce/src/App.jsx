@@ -1,25 +1,23 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
-import Home from "./pages/Home";
-import CartModal from "./components/CartModal";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import CartPage from "./pages/CartPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
   return (
     <Router>
-      <div className="p-4">
-        <button onClick={() => setIsCartOpen(true)} className="bg-green-500 text-white p-2 rounded">
-          Voir le panier
-        </button>
-        <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
+      <nav>
+        <Link to="/">Accueil</Link>
+        <Link to="/panier">Voir le panier</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/panier" element={<CartPage />} />
+      </Routes>
     </Router>
   );
 }
 
 export default App;
+
 
